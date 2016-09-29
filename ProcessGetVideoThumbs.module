@@ -123,9 +123,9 @@ class ProcessGetVideoThumbs extends WireData implements Module, ConfigurableModu
 
                 //YOUTUBE
                 // perform a strpos fast check before performing regex check
-                if(strpos($videoURL, '://www.youtube.com/') !== false || strpos($videoURL, '://youtu.be/') !== false) {
+                if(strpos($videoURL, '://www.youtube.com/') !== false || strpos($videoURL, '://youtu.be/') !== false || strpos($videoURL, '://m.youtube.com/') !== false) {
                     //modified from http://stackoverflow.com/a/17030234 to handle <p> tags around the url
-                    $regex = "/\s*(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?#&\"'<>]+)/";
+                    $regex = "/\s*(?:http(?:s)?:\/\/)?(?:www\.|m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?#&\"'<>]+)/";
                     if(!preg_match_all($regex, $videoURL, $matches)) return;
 
                     foreach($matches[1] as $key => $line) {
